@@ -2,16 +2,6 @@ const Event = require('../../models/event');
 const User = require('../../models/user');
 const { dateToString } = require('../../helpers/date');
 
-
-const transformEvent = event => {
-    return {
-        ...event._doc,
-        _id: event.id,
-        date: dateToString(event._doc.date),
-        creator: user.bind(this, event.creator)
-    }
-}
-
 const user = async userId => {
     try {
         const user = await User.findById(userId);
@@ -46,6 +36,14 @@ const singleEvent = async eventId => {
     }
 }
 
+const transformEvent = event => {
+    return {
+        ...event._doc,
+        _id: event.id,
+        date: dateToString(event._doc.date),
+        creator: user.bind(this, event.creator)
+    }
+}
 
 const transformBooking = booking => {
     return {
@@ -57,9 +55,6 @@ const transformBooking = booking => {
         updatedAt: dateToString(booking._doc.updatedAt),
     }
 }
-// exports.user = user;
-// exports.events = events;
-// exports.singleEvent = events.singleEvent;
 
 exports.transformEvent = transformEvent;
 exports.transformBooking = transformBooking;
