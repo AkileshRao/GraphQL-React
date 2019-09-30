@@ -3,7 +3,7 @@ import './Events.css';
 import Backdrop from '../components/Backdrop/Backdrop';
 import Modal from '../components/Modal/Modal';
 import AuthContext from '../context/auth-context';
-
+import EventsList from '../components/Events/EventsList/EventsList';
 class EventsPage extends Component {
     state = {
         creating: false,
@@ -132,9 +132,6 @@ class EventsPage extends Component {
 
 
     render() {
-        const eventList = this.state.events.map(event => {
-            return <li key={event._id} className='events__list-item'>{event.title}</li>
-        });
         return (
             <React.Fragment>
                 {this.state.creating && <Backdrop />}
@@ -164,9 +161,7 @@ class EventsPage extends Component {
                     <button className='btn' onClick={this.startCreateEventHandler}>Create Event</button>
                 </div>}
 
-                <ul className='events__list'>
-                    {eventList}
-                </ul>
+                <EventsList events={this.state.events} authUserId={this.context.userId}/>
             </React.Fragment>
         )
     }

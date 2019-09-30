@@ -20,7 +20,7 @@ class App extends Component {
       token: token,
       userId: userId
     });
-  }
+  } 
 
   logout = () => {
     this.setState({
