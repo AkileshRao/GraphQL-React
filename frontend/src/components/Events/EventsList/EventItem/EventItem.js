@@ -5,11 +5,10 @@ const eventItem = props => (
   <li key={props.eventId} className='events__list-item'>
     <div>
       <h1>{props.title}</h1>
-      <h2>$10.00</h2>
+      <h2>${props.price} - {new Date(props.date).toLocaleDateString()}</h2>
     </div>
     <div>
-      {props.userId === props.creatorId ? <p>You're the owner of the event</p> : <button className='btn'>View Details</button>}
-      
+      {props.userId === props.creatorId ? <p>You're the owner of the event</p> : <button className='btn' onClick={props.viewDetail.bind(this, props.eventId)}>View Details</button>}
     </div>
   </li>
 );
